@@ -2,9 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class Anagramas
+class Program
 {
-    public static HashSet<Tuple<string, string>> EncontrarAnagramas(HashSet<string> palabras)
+    static void Main()
+    {
+        HashSet<string> palabras = new HashSet<string> { "amor", "roma", "mora", "ramo", "pedro", "dormir" };
+        var anagramas = EncontrarAnagramas(palabras);
+
+        foreach (var par in anagramas)
+        {
+            Console.WriteLine($"({par.Item1}, {par.Item2})");
+        }
+    }
+
+    static HashSet<Tuple<string, string>> EncontrarAnagramas(HashSet<string> palabras)
     {
         HashSet<Tuple<string, string>> paresAnagramas = new HashSet<Tuple<string, string>>();
         var listadoPalabras = palabras.ToList();
@@ -23,7 +34,7 @@ public class Anagramas
         return paresAnagramas;
     }
 
-    private static bool SonAnagramas(string palabra1, string palabra2)
+    static bool SonAnagramas(string palabra1, string palabra2)
     {
         var arreglo1 = palabra1.ToCharArray();
         var arreglo2 = palabra2.ToCharArray();
@@ -33,11 +44,3 @@ public class Anagramas
     }
 }
 
-// Ejemplo de uso:
-var palabras = new HashSet<string> { "amor", "roma", "mora", "ramo", "pedro", "dormir" };
-var anagramas = Anagramas.EncontrarAnagramas(palabras);
-
-foreach (var par in anagramas)
-{
-    Console.WriteLine($"({par.Item1}, {par.Item2})");
-}

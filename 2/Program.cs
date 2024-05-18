@@ -1,14 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-public static HashSet<string> FiltrarPalabrasPorLetra(HashSet<string> palabras, char letra)
+class Program
 {
-    HashSet<string> resultado = new HashSet<string>();
-    foreach (string palabra in palabras)
+    static void Main()
     {
-        if (!string.IsNullOrEmpty(palabra) && palabra[0] == letra)
+        HashSet<string> palabras = new HashSet<string> { "casa", "coche", "sol", "cielo", "mar" };
+        char letraInicial = 'c'; // Puedes cambiar esto por la letra inicial que desees buscar
+        HashSet<string> palabrasConLetra = FiltrarPalabrasPorLetraInicial(palabras, letraInicial);
+
+        Console.WriteLine($"Palabras que comienzan con la letra '{letraInicial}':");
+        foreach (string palabra in palabrasConLetra)
         {
-            resultado.Add(palabra);
+            Console.WriteLine(palabra);
         }
     }
-    return resultado;
+
+    static HashSet<string> FiltrarPalabrasPorLetraInicial(HashSet<string> palabras, char letraInicial)
+    {
+        HashSet<string> palabrasConLetraInicial = new HashSet<string>();
+        foreach (string palabra in palabras)
+        {
+            if (!string.IsNullOrEmpty(palabra) && palabra[0] == letraInicial)
+            {
+                palabrasConLetraInicial.Add(palabra);
+            }
+        }
+        return palabrasConLetraInicial;
+    }
 }
+
